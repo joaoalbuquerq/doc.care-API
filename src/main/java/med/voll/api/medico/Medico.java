@@ -15,7 +15,7 @@ import med.voll.api.endereco.Endereco;
 public class Medico {
 
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
