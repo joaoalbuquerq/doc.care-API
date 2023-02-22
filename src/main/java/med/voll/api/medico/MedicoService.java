@@ -1,6 +1,8 @@
 package med.voll.api.medico;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class MedicoService {
         medicoRespository.save(medico);
     }
 
-    public List<DadosListagemMedico> listar(){
-        return medicoRespository.findAll().stream().map(DadosListagemMedico::new).toList();
+    public Page<DadosListagemMedico> listar(Pageable paginacao){
+        return medicoRespository.findAll(paginacao).map(DadosListagemMedico::new);
     }
 }
