@@ -27,7 +27,7 @@ public class MedicoService {
     }
 
     public void excluir(Long id){
-        if(id != null)
-            medicoRespository.deleteById(id);
+        var medico = medicoRespository.getReferenceById(id);
+        medico.inativar();
     }
 }
