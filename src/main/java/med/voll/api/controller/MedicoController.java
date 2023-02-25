@@ -35,4 +35,10 @@ public class MedicoController {
         service.atualizar(dadosRequisicao);
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        service.excluir(id);
+    }
+
 }
