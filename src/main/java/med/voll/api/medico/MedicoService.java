@@ -13,11 +13,16 @@ public class MedicoService {
     @Autowired
     private MedicoRepository medicoRespository;
 
-    public void cadastrarMedico(Medico medico){
+    public void cadastrar(Medico medico){
         medicoRespository.save(medico);
     }
 
     public Page<DadosListagemMedico> listar(Pageable paginacao){
         return medicoRespository.findAll(paginacao).map(DadosListagemMedico::new);
+    }
+
+    public void atualizar(DadosAtualizacaoMedico dados){
+        var medico = medicoRespository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
     }
 }
