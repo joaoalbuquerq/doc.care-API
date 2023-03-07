@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -20,25 +22,25 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroMedico dadosRequisicao){
-        service.cadastrar(new Medico(dadosRequisicao));
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dadosRequisicao, UriComponentsBuilder uri){
+        return service.cadastrar(dadosRequisicao, uri);
     }
 
     @GetMapping
-    public Page<DadosListagemMedico> listar(@PageableDefault(size = 20, sort = {"nome"}) Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemMedico>> listar(@PageableDefault(size = 20, sort = {"nome"}) Pageable paginacao){
         return service.listar(paginacao);
     }
 
     @PutMapping
     @Transactional
-    public void ataulizar(@RequestBody @Valid DadosAtualizacaoMedico dadosRequisicao){
-        service.atualizar(dadosRequisicao);
+    public ResponseEntity ataulizar(@RequestBody @Valid DadosAtualizacaoMedico dadosRequisicao){
+        return service.atualizar(dadosRequisicao);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
-        service.excluir(id);
+    public ResponseEntity excluir(@PathVariable Long id){
+        return service.excluir(id);
     }
 
 }
