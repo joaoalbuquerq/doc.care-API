@@ -43,4 +43,9 @@ public class MedicoService {
 
         return ResponseEntity.noContent().build();
     }
+
+    public ResponseEntity pesquisar(Long id){
+        var medico = medicoRespository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
+    }
 }

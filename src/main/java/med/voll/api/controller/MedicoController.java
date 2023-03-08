@@ -43,4 +43,9 @@ public class MedicoController {
         return service.excluir(id);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id){
+        return service.pesquisar(id);
+    }
+
 }
