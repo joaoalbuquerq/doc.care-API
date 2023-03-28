@@ -26,7 +26,7 @@ public class PacienteService {
     }
 
     public ResponseEntity<Page<DadosListagemPaciente>> listar(Pageable paginacao){
-        var page = repository.findAll(paginacao).map(DadosListagemPaciente::new);
+        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
         return ResponseEntity.ok(page);
     }
 
