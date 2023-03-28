@@ -1,6 +1,7 @@
 package med.voll.api.domain.paciente;
 
 import med.voll.api.domain.medico.DadosDetalhamentoMedico;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +22,6 @@ public class PacienteService {
         Paciente paciente = new Paciente(dto);
         repository.save(paciente);
         var uri = uriBuilder.path("/paciente/{id}").buildAndExpand(paciente.getId());
-
         return ResponseEntity.ok().build();
     }
 
@@ -30,4 +30,9 @@ public class PacienteService {
         return ResponseEntity.ok(page);
     }
 
+    public ResponseEntity atualizar(DadosAtualizacaoPaciente dadosRequisicao) {
+        var paciente = repository.getReferenceById(dadosRequisicao.id());
+        paciente.atualizarDadosCadastrais(dadosRequisicao);
+        return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
+    }
 }
