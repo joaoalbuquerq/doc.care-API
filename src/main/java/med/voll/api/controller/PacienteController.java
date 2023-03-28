@@ -41,5 +41,10 @@ public class PacienteController {
         return service.atualizar(dadosRequisicao);
     }
 
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity excluir(@PathVariable Long id){
+        return service.excluir(id);
+    }
 
 }

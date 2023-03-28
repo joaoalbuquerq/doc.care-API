@@ -35,4 +35,11 @@ public class PacienteService {
         paciente.atualizarDadosCadastrais(dadosRequisicao);
         return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
     }
+
+    public ResponseEntity excluir(Long id){
+        var paciente = repository.getReferenceById(id);
+        paciente.inativar();
+
+        return ResponseEntity.noContent().build();
+    }
 }
