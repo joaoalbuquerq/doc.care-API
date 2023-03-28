@@ -42,4 +42,9 @@ public class PacienteService {
 
         return ResponseEntity.noContent().build();
     }
+
+    public ResponseEntity detalhar(Long id){
+        var paciente = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
+    }
 }

@@ -1,10 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.domain.paciente.DadosAtualizacaoPaciente;
-import med.voll.api.domain.paciente.DadosCadastroPaciente;
-import med.voll.api.domain.paciente.DadosListagemPaciente;
-import med.voll.api.domain.paciente.PacienteService;
+import med.voll.api.domain.paciente.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -45,6 +42,11 @@ public class PacienteController {
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id){
         return service.excluir(id);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity detalhar(@PathVariable Long id){
+        return service.detalhar(id);
     }
 
 }
