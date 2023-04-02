@@ -7,7 +7,7 @@ import java.time.DayOfWeek;
 
 public class ValidadorHorarioFuncionamentoClinica {
 
-    public void validarHorario(DadosAgendamentoConsulta dados){
+    public void validar(DadosAgendamentoConsulta dados){
         var dataConsulta = dados.data();
         var domingo = dataConsulta.getDayOfWeek().equals(DayOfWeek.SUNDAY);
         var antesAberturaClinica = dataConsulta.getHour() < 7;
