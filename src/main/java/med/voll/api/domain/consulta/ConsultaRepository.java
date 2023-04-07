@@ -18,5 +18,5 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
             where c.paciente.id = :idPaciente
             and c.data between :horarioInicial and :horarioFinal
             """)
-    boolean existsByPacienteIdAndDataBetween(Long idPaciente, LocalDateTime horarioInicial, LocalDateTime horarioFinal);
+    Consulta existsByPacienteIdAndDataBetween(Long idPaciente, LocalDateTime horarioInicial, LocalDateTime horarioFinal);
 }
