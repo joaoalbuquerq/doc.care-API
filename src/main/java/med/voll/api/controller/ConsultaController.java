@@ -31,4 +31,5 @@ public class ConsultaController {
         return ResponseEntity.noContent().build();
     }
 
+
 }
